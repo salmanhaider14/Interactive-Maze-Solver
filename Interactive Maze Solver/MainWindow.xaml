@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interactive_Maze_Solver"
         mc:Ignorable="d"
-        Title="Interactive Maze Solver" Height="600" Width="600">
+        Title="Interactive Maze Solver" Height="600" Width="600"
+        Background="#EDE7F6"
+>
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
             <Canvas Name="MazeCanvas" Background="White" Width="300" Height="300" Margin="0,0,0,10" MouseLeftButtonDown="MazeCanvas_MouseLeftButtonDown" Cursor="Hand"/>
@@ -17,7 +19,7 @@
                 <TextBlock Name="TimeTakenTextBlock" FontSize="14"/>-->
             </StackPanel>
             <CheckBox Name="CustomMazeToggle" Content="Draw Custom Maze" Margin="0,15,0,0" FontSize="
-                      14" FontWeight="Bold" Checked="CustomMazeToggle_Checked" Unchecked="CustomMazeToggle_Unchecked"/>
+                      14" FontWeight="Bold" Checked="CustomMazeToggle_Checked" Unchecked="CustomMazeToggle_Unchecked" Cursor="Hand"/>
             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                 <TextBlock Text="Maze:" FontWeight="Bold" FontSize="14" Margin="0,0,20,0"/>
                 <ComboBox Name="MazeSelector" Width="200"  SelectionChanged="MazeSelector_SelectionChanged" Cursor="Hand">

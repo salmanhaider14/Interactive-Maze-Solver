@@ -125,12 +125,21 @@ public partial class MainWindow : Window
 
     private void DrawSpecialNode(Node node, string imagePath, bool isStart = false)
     {
+        BitmapImage bitmap = new BitmapImage();
+        bitmap.BeginInit();
+        bitmap.UriSource = new Uri($"pack://application:,,,/Resources/{imagePath}");
+        bitmap.DecodePixelWidth = cellSize;
+        bitmap.DecodePixelHeight = cellSize;
+        bitmap.EndInit();
+
         Image image = new Image
         {
             Width = cellSize,
             Height = cellSize,
-            Source = new BitmapImage(new Uri($"pack://application:,,,/Resources/{imagePath}"))
+            Source = bitmap
         };
+
+        RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.HighQuality);
 
         Canvas.SetLeft(image, node.Col * cellSize);
         Canvas.SetTop(image, node.Row * cellSize);
@@ -192,19 +201,28 @@ public partial class MainWindow : Window
         if (startImage is not null)
             MazeCanvas.Children.Remove(startImage);
 
+        BitmapImage bitmap = new BitmapImage();
+        bitmap.BeginInit();
+        bitmap.UriSource = new Uri($"pack://application:,,,/Resources/boy.png");
+        bitmap.DecodePixelWidth = cellSize;
+        bitmap.DecodePixelHeight = cellSize;
+        bitmap.EndInit();
+
         Image boyImage = new Image
         {
             Width = cellSize,
             Height = cellSize,
-            Source = new BitmapImage(new Uri("pack://application:,,,/Resources/boy.png"))
+            Source = bitmap
         };
+        RenderOptions.SetBitmapScalingMode(boyImage, BitmapScalingMode.HighQuality);
+
         Canvas.SetLeft(boyImage, start.Col * cellSize);
         Canvas.SetTop(boyImage, start.Row * cellSize);
         MazeCanvas.Children.Add(boyImage);
         animatedImage = boyImage;
 
         DispatcherTimer timer = new DispatcherTimer();
-        timer.Interval = TimeSpan.FromMilliseconds(200); // Adjust the interval for desired speed
+        timer.Interval = TimeSpan.FromMilliseconds(170);
         int index = 0;
 
         timer.Tick += (s, e) =>
@@ -255,6 +273,7 @@ public partial class MainWindow : Window
 
     private void ResetButton_Click(object sender, RoutedEventArgs e)
     {
+        PathCostTextBlock.Text = "";
         if (isCustomMazeMode)
         {
             ResetMaze();
@@ -291,18 +310,9 @@ public partial class MainWindow : Window
         }
         DrawMaze();
     }
-
-
     private void MazeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         int selectedIndex = MazeSelector.SelectedIndex;
         LoadMaze(selectedIndex);
     }
 }
-
-public class Node
-{
-    public int Row { get; set; }
-    public int Col { get; set; }
-}
-
