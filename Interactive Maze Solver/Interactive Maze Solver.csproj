@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Interactive_Maze_Solver</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\boy.png" />
+    <None Remove="Resources\flag.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\boy.png" />
+    <Resource Include="Resources\flag.png" />
+  </ItemGroup>
+
+</Project>
