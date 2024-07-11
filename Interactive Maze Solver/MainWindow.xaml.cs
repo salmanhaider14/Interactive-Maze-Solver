@@ -30,7 +30,7 @@ public partial class MainWindow : Window
 
     private void LoadMaze(int index)
     {
-        // Define your predefined mazes here
+        // predefined mazes 
         var mazes = new List<int[,]>
 {
     new int[,]
@@ -90,10 +90,10 @@ public partial class MainWindow : Window
         { 0, 0, 0, 1, 0 }
     }
 };
-        // Set the maze, start, and goal positions for each predefined maze
+        // maze, start, and goal positions for each predefined maze
         maze = mazes[index];
-        start = new Node { Row = 0, Col = 0 }; // Adjust as needed
-        goal = new Node { Row = 4, Col = 4 }; // Adjust as needed
+        start = new Node { Row = 0, Col = 0 };
+        goal = new Node { Row = 4, Col = 4 };
         DrawMaze();
     }
 
@@ -166,13 +166,10 @@ public partial class MainWindow : Window
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
         if (AlgorithmSelector.SelectedIndex == 0) // DFS
-        {
             pathFound = solver.SolveDFS();
-        }
         else if (AlgorithmSelector.SelectedIndex == 1) // BFS
-        {
             pathFound = solver.SolveBFS();
-        }
+
         watch.Stop();
         var elapsedMs = watch.ElapsedMilliseconds;
 
@@ -230,15 +227,15 @@ public partial class MainWindow : Window
     private void CustomMazeToggle_Checked(object sender, RoutedEventArgs e)
     {
         isCustomMazeMode = true;
-        MazeSelector.IsEnabled = false; // Disable predefined maze selection
-        ResetMaze(); // Clear the canvas for custom maze creation
+        MazeSelector.IsEnabled = false;
+        ResetMaze();
     }
 
     private void CustomMazeToggle_Unchecked(object sender, RoutedEventArgs e)
     {
         isCustomMazeMode = false;
-        MazeSelector.IsEnabled = true; // Enable predefined maze selection
-        LoadMaze(MazeSelector.SelectedIndex); // Load the selected predefined maze
+        MazeSelector.IsEnabled = true;
+        LoadMaze(MazeSelector.SelectedIndex);
     }
     private void MazeCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
@@ -307,7 +304,5 @@ public class Node
 {
     public int Row { get; set; }
     public int Col { get; set; }
-
-    public int Cost { get; set; } = 1;
 }
 

@@ -81,13 +81,10 @@ public class MazeSolver
     {
         List<Node> neighbors = new List<Node>();
 
-        int[] dRow = { -1, 1, 0, 0 };
-        int[] dCol = { 0, 0, -1, 1 };
-
-        for (int i = 0; i < 4; i++)
+        foreach (var direction in new[] { (-1, 0), (1, 0), (0, -1), (0, 1) })
         {
-            int newRow = node.Row + dRow[i];
-            int newCol = node.Col + dCol[i];
+            int newRow = node.Row + direction.Item1;
+            int newCol = node.Col + direction.Item2;
 
             if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && maze[newRow, newCol] == 0)
             {
@@ -97,4 +94,5 @@ public class MazeSolver
 
         return neighbors;
     }
+
 }
